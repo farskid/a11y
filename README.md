@@ -10,13 +10,13 @@ engines.
 ## How to install
 
 ```
-npm install https://github.com/farskid/a11y.git --save-dev
+npm install @farskid/a11y --save-dev
 ```
 
 or
 
 ```
-yarn add https://github.com/farskid/a11y.git -D
+yarn add @farskid/a11y -D
 ```
 
 ## How it works
