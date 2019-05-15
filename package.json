@@ -15,7 +15,7 @@
     "microbundle": "0.11.0",
     "tslint-config-prettier": "1.18.0"
   },
-  "bin": "dist/a11y.js",
+  "bin": "bin/a11y",
   "source": "lib/a11y.ts",
   "main": "dist/a11y.js",
   "types": "lib/types.ts",
