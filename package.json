@@ -24,7 +24,7 @@
     "build": "rm -rf dist && tsc",
     "start": "tsc --watch",
     "test:cli:no-url": "yarn build && node dist/a11y.js",
-    "test:cli": "yarn build && node dist/a11y.js --url https://google.com"
+    "test:cli": "yarn build && node dist/a11y.js --url https://google.com --out ./reports"
   },
   "dependencies": {
     "axe-puppeteer": "1.0.0",
