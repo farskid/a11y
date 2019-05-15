@@ -1,5 +1,7 @@
 # A11y
 
+[![Build Status](https://travis-ci.com/farskid/a11y.svg?branch=master)](https://travis-ci.com/farskid/a11y)
+
 An experimental attempt to run accessibility insights, using different insight
 engines.
 
