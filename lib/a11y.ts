@@ -1,5 +1,4 @@
 import * as path from "path";
-import * as fs from "fs";
 import minimist from "minimist";
 import { A11yOptions } from "./types";
 import { logger, successLogger, errorLogger } from "./loggers";
@@ -7,8 +6,7 @@ import { runWithAxeCore } from "./runners/axeCore";
 import { runWithPa11y } from "./runners/pa11y";
 import { highlightText } from "./colors";
 import ora from "ora";
-import { jsonStringifyWithUndefined } from "./stringify";
-import { printReport } from "./report";
+import { createReport, storeReport } from "./report";
 
 const spinner = (txt: string) => ora(txt);
 
@@ -18,31 +16,40 @@ const engines: Engine[] = ["axecore", "pa11y"];
 async function runA11y(url: string, options: A11yOptions) {
   const { out } = options;
   const progressSpinner = spinner(
-    `Gathering a11y insights for ${highlightText(url)}`
+    `Gathering a11y insights for ${highlightText(url)} \n\n`
   );
 
-  logger(`\n`);
   progressSpinner.start();
 
   const runners = Promise.all([runWithAxeCore(url), runWithPa11y(url)]);
 
   try {
     const reports = await runners;
-    let report = `
-      ${`Accessibility Results For:`.toUpperCase()}
-      -----------
-      ${reports[0].documentTitle}
-      ${reports[0].pageUrl}
-    `;
-    reports.forEach((rep, index) => {
-      report += `
-      ${printReport(rep, out, engines[index])}
-      `;
-      fs.writeFileSync(
-        path.resolve(out, `a11y-report-${engines[index]}.json`),
-        jsonStringifyWithUndefined(rep, 2)
-      );
-    });
+    const report = `\n    ${`Accessibility Results For:`.toUpperCase()}
+    -----------
+    ${reports[0].documentTitle}
+    ${reports[0].pageUrl}
+    `
+      .concat(
+        ...reports.map((rep, index) => createReport(rep, out, engines[index]))
+      )
+      .concat(`\n\n`);
+
+    const storeProcesses = Promise.all(
+      reports.map((rep, index) =>
+        storeReport(
+          rep,
+          path.resolve(out, `a11y-report-${engines[index]}.json`)
+        )
+      )
+    );
+
+    try {
+      await storeProcesses;
+    } catch (err) {
+      throw err;
+    }
+
     logger(report);
     process.exitCode = 0;
   } catch (err) {
