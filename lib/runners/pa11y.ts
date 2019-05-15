@@ -1,6 +1,5 @@
 import pa11y from "pa11y";
-import { Pa11yOptions } from "pa11y";
-import { Report, Runner } from "../types";
+import { Report, Runner, Pa11yOptions } from "../types";
 
 export const runWithPa11y: Runner = async (url: string) => {
   const pa11yOptions: Partial<Pa11yOptions> = {

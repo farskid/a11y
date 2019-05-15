@@ -1,5 +1,5 @@
 import { AxePuppeteer } from "axe-puppeteer";
-import * as puppeteer from "puppeteer";
+import puppeteer from "puppeteer";
 import { Report } from "../types";
 
 export async function runAxeCore(url: string) {

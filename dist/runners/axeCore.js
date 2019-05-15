@@ -2,13 +2,13 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
 var axe_puppeteer_1 = require("axe-puppeteer");
-var puppeteer = require("puppeteer");
+var puppeteer_1 = tslib_1.__importDefault(require("puppeteer"));
 function runAxeCore(url) {
     return tslib_1.__awaiter(this, void 0, void 0, function () {
         var browser, page, results, title;
         return tslib_1.__generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4, puppeteer.launch()];
+                case 0: return [4, puppeteer_1.default.launch()];
                 case 1:
                     browser = _a.sent();
                     return [4, browser.newPage()];

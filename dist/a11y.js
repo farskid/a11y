@@ -1,14 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
-var path = require("path");
-var fs = require("fs");
-var minimist_1 = require("minimist");
+var path = tslib_1.__importStar(require("path"));
+var fs = tslib_1.__importStar(require("fs"));
+var minimist_1 = tslib_1.__importDefault(require("minimist"));
 var loggers_1 = require("./loggers");
 var axeCore_1 = require("./runners/axeCore");
 var pa11y_1 = require("./runners/pa11y");
 var colors_1 = require("./colors");
-var ora_1 = require("ora");
+var ora_1 = tslib_1.__importDefault(require("ora"));
 var stringify_1 = require("./stringify");
 var report_1 = require("./report");
 var spinner = function (txt) { return ora_1.default(txt); };

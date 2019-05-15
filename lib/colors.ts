@@ -1,4 +1,4 @@
-import * as colors from "colors";
+import colors from "colors";
 export type Color = (str: string) => string;
 
 export const text: Color = (str: string) => colors.white(str);

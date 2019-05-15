@@ -2,7 +2,7 @@
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
-var pa11y_1 = require("pa11y");
+var pa11y_1 = tslib_1.__importDefault(require("pa11y"));
 exports.runWithPa11y = function (url) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
     var pa11yOptions, results, report;
     return tslib_1.__generator(this, function (_a) {

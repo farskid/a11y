@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var path = require("path");
+var tslib_1 = require("tslib");
+var path = tslib_1.__importStar(require("path"));
 var colors_1 = require("./colors");
 var colors_2 = require("./colors");
 function printReport(results, out, engine) {

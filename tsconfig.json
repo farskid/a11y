@@ -5,17 +5,19 @@
     "outDir": "dist",
     "noEmit": false,
     "strict": true,
-    "moduleResolution": "node",
+    "module": "commonjs",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "removeComments": true,
+    "allowSyntheticDefaultImports": true,
     "importHelpers": true,
     "paths": { "*": ["./lib/typings/*"] },
     "baseUrl": ".",
     "typeRoots": ["mode_modules/@types", "./lib/types"],
-    "declaration": true
+    "declaration": true,
+    "esModuleInterop": true
   },
   "compileOnSave": true
 }
