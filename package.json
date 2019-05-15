@@ -18,12 +18,10 @@
   "bin": "dist/a11y.js",
   "source": "lib/a11y.ts",
   "main": "dist/a11y.js",
-  "module": "dist/a11y.mjs",
-  "unpkg": "dist/a11y.umd.js",
   "types": "lib/types.ts",
   "scripts": {
-    "build": "microbundle",
-    "start": "microbundle watch",
+    "build": "rm -rf dist && tsc",
+    "start": "tsc --watch",
     "test:cli:no-url": "yarn build && node dist/a11y.js",
     "test:cli": "yarn build && node dist/a11y.js --url https://google.com"
   },

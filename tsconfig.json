@@ -1,7 +1,21 @@
 {
   "compilerOptions": {
+    "target": "es5",
+    "lib": ["es6", "dom"],
+    "outDir": "dist",
+    "noEmit": false,
+    "strict": true,
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "removeComments": true,
+    "importHelpers": true,
     "paths": { "*": ["./lib/typings/*"] },
     "baseUrl": ".",
-    "typeRoots": ["mode_modules/@types", "./lib/typings"]
-  }
+    "typeRoots": ["mode_modules/@types", "./lib/types"],
+    "declaration": true
+  },
+  "compileOnSave": true
 }
