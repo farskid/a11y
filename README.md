@@ -37,6 +37,12 @@ a11y --url https://localhost:3000 --out ./reports/
 | `--url`             | Specify the url to look into                    | http://localhost:3000 | **Yes**  |
 | `--out`             | Specify the output directoty for stored reports | ./reports/            | **No**   |
 
+## Roadmap
+
+- [ ] Sync stored issue interface of engines
+- [ ] Possible integration with Cypress to inspect the issues in action
+- [ ] Visualize the stored issues in a generated HTML with reasonable styles
+
 ## License
 
 [MIT](./LICENSE)
