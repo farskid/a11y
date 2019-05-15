@@ -1,0 +1,7 @@
+node_modules
+dist
+.rts2_*
+.DS_Store
+.vscode
+.idea
+a11y-report-*.json

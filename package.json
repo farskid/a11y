@@ -1,0 +1,38 @@
+{
+  "name": "a11y",
+  "amdName": "a11y",
+  "description": "Automated a11y tests",
+  "version": "0.1.0",
+  "author": {
+    "name": "Farzad YZ",
+    "email": "farskid@gmail.com",
+    "url": "https://farzadyz.com"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/chalk": "2.2.0",
+    "@types/puppeteer": "1.12.4",
+    "microbundle": "0.11.0",
+    "tslint-config-prettier": "1.18.0"
+  },
+  "bin": "dist/a11y.js",
+  "source": "lib/a11y.ts",
+  "main": "dist/a11y.js",
+  "module": "dist/a11y.mjs",
+  "unpkg": "dist/a11y.umd.js",
+  "types": "lib/types.ts",
+  "scripts": {
+    "build": "microbundle",
+    "start": "microbundle watch",
+    "test:cli:no-url": "yarn build && node dist/a11y.js",
+    "test:cli": "yarn build && node dist/a11y.js --url https://google.com"
+  },
+  "dependencies": {
+    "axe-puppeteer": "1.0.0",
+    "colors": "1.3.3",
+    "minimist": "1.2.0",
+    "ora": "3.4.0",
+    "pa11y": "5.1.0",
+    "puppeteer": "1.15.0"
+  }
+}

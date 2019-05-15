@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "paths": { "*": ["./lib/typings/*"] },
+    "baseUrl": ".",
+    "typeRoots": ["mode_modules/@types", "./lib/typings"]
+  }
+}
