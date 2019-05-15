@@ -2,7 +2,7 @@
   "name": "a11y",
   "amdName": "a11y",
   "description": "Automated a11y tests",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": {
     "name": "Farzad YZ",
     "email": "farskid@gmail.com",
