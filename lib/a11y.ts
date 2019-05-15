@@ -102,7 +102,7 @@ function main() {
     })
   );
 
-  runA11y(url, Object.assign({}, defaultOptions, options));
+  runA11y(url, options);
 }
 
 // Run main
