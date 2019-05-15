@@ -1,6 +1,7 @@
 import * as path from "path";
 import minimist from "minimist";
-import { A11yOptions } from "./types";
+import { A11yOptions, SupportedStandard } from "./types";
+import { objectWithNoFalsyValue } from "./utils";
 import { logger, successLogger, errorLogger } from "./loggers";
 import { runWithAxeCore } from "./runners/axeCore";
 import { runWithPa11y } from "./runners/pa11y";
@@ -13,15 +14,25 @@ const spinner = (txt: string) => ora(txt);
 export type Engine = "axecore" | "pa11y";
 const engines: Engine[] = ["axecore", "pa11y"];
 
+const supportedStandards: SupportedStandard[] = [
+  "WCAG2A",
+  "WCAG2AA",
+  "Section508"
+];
+
 async function runA11y(url: string, options: A11yOptions) {
   const { out } = options;
+  logger("\n");
   const progressSpinner = spinner(
     `Gathering a11y insights for ${highlightText(url)} \n\n`
   );
 
   progressSpinner.start();
 
-  const runners = Promise.all([runWithAxeCore(url), runWithPa11y(url)]);
+  const runners = Promise.all([
+    runWithAxeCore(url, options),
+    runWithPa11y(url, options)
+  ]);
 
   try {
     const reports = await runners;
@@ -63,13 +74,34 @@ async function runA11y(url: string, options: A11yOptions) {
 
 function main() {
   const args = minimist(process.argv.slice(2));
-  const { url, ...options } = args;
+  const { url, standard, out } = args;
+  // Invalid url
   if (typeof url !== "string" || url === "") {
     return errorLogger("a11y can't find a url");
   }
-  const defaultOptions: A11yOptions = {
-    out: path.resolve(process.cwd())
+  // Unsupported standard
+  if (!supportedStandards.includes(standard)) {
+    return errorLogger(
+      `Standard ${standard} is not supported. Only ${supportedStandards.join(
+        "/"
+      )} are supported for now.`
+    );
+  }
+
+  const defaultOptions: Partial<A11yOptions> = {
+    out: path.resolve(process.cwd()),
+    standard: "WCAG2A"
   };
+  const options = Object.assign<{}, Partial<A11yOptions>, A11yOptions>(
+    {},
+    defaultOptions,
+    objectWithNoFalsyValue({
+      url,
+      out,
+      standard
+    })
+  );
+
   runA11y(url, Object.assign({}, defaultOptions, options));
 }
 

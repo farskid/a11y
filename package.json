@@ -32,7 +32,7 @@
     "build": "rm -rf dist && tsc",
     "start": "tsc --watch",
     "test:cli:no-url": "yarn build && node dist/a11y.js",
-    "test:cli": "rm -rf ./reports && yarn build && node dist/a11y.js --url https://google.com --out ./reports",
+    "test:cli": "rm -rf ./reports && yarn build && node dist/a11y.js --url https://farzadyz.com --out ./reports --standard Section508",
     "prepublish": "npm run build"
   },
   "files": [
