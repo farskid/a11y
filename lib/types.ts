@@ -9,10 +9,17 @@ export type Report = {
   pageUrl: string;
 };
 
-export type Runner = (url: string) => Promise<Report>;
-export interface A11yOptions {
+export type SupportedStandard = "WCAG2A" | "WCAG2AA" | "Section508";
+export type SupportedOptions = {
+  standard: SupportedStandard;
+};
+
+export type Runner = (url: string, options: A11yOptions) => Promise<Report>;
+export type A11yArguments = {
   out: string;
-}
+  url: string;
+};
+export interface A11yOptions extends SupportedOptions, A11yArguments {}
 
 export type AxeCoreResult = axe.AxeResults;
 
@@ -35,7 +42,7 @@ export type Pa11yOptions = {
   rootElement: string | null;
   rules: string[];
   screenCapture: string | null;
-  standard: "Section508" | "WCAG2A" | "WCAG2AA" | "WCAG2AAA";
+  standard: SupportedStandard;
   timeout: number;
   userAgent: string;
   viewport: {

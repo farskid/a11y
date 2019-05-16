@@ -36,10 +36,15 @@ a11y --url https://localhost:3000 --out ./reports/
 
 ## API
 
-| Command line option | Descriptopn                                     | Example               | Required |
-| ------------------- | ----------------------------------------------- | --------------------- | -------- |
-| `--url`             | Specify the url to look into                    | http://localhost:3000 | **Yes**  |
-| `--out`             | Specify the output directoty for stored reports | ./reports/            | **No**   |
+| Command line option | Descriptopn                                                                                 | Example               | Required | Default |
+| :------------------ | :------------------------------------------------------------------------------------------ | :-------------------- | :------: | :-----: |
+| `--url`             | Specify the url to look into                                                                | http://localhost:3000 | **Yes**  |    -    |
+| `--out`             | Specify the output directoty for stored reports                                             | ./reports/            |  **No**  |   ./    |
+| `--standard`        | Specify the standard to test against (Supported Standards: `WCAG2A`,`WCAG2AA`,`Section508`) | Section508            |  **No**  | WCAG2A  |
+
+> Note: `--out` will create all parent directories that do not exist recursively!
+
+> Note: Standards are case sensitive!
 
 ## Roadmap
 

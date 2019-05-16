@@ -1,9 +1,9 @@
 import pa11y from "pa11y";
 import { Report, Runner, Pa11yOptions } from "../types";
 
-export const runWithPa11y: Runner = async (url: string) => {
+export const runWithPa11y: Runner = async (url, options) => {
   const pa11yOptions: Partial<Pa11yOptions> = {
-    standard: "WCAG2A",
+    standard: options.standard,
     includeNotices: true,
     includeWarnings: true
   };
