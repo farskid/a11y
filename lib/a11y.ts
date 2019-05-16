@@ -1,7 +1,6 @@
 import * as path from "path";
 import minimist from "minimist";
 import { A11yOptions, SupportedStandard } from "./types";
-import { objectWithNoFalsyValue } from "./utils";
 import { logger, successLogger, errorLogger } from "./loggers";
 import { runWithAxeCore } from "./runners/axeCore";
 import { runWithPa11y } from "./runners/pa11y";
@@ -80,7 +79,7 @@ function main() {
     return errorLogger("a11y can't find a url");
   }
   // Unsupported standard
-  if (!supportedStandards.includes(standard)) {
+  if (standard !== undefined && !supportedStandards.includes(standard)) {
     return errorLogger(
       `Standard ${standard} is not supported. Only ${supportedStandards.join(
         "/"
@@ -92,15 +91,7 @@ function main() {
     out: path.resolve(process.cwd()),
     standard: "WCAG2A"
   };
-  const options = Object.assign<{}, Partial<A11yOptions>, A11yOptions>(
-    {},
-    defaultOptions,
-    objectWithNoFalsyValue({
-      url,
-      out,
-      standard
-    })
-  );
+  const options = { ...defaultOptions, url, out, standard };
 
   runA11y(url, options);
 }
