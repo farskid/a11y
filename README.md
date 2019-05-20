@@ -1,5 +1,6 @@
 # A11y
 
+![Npm Version](https://img.shields.io/npm/v/npm.svg)
 [![Build Status](https://travis-ci.com/farskid/a11y.svg?branch=master)](https://travis-ci.com/farskid/a11y)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/farskid/a11y/pulls)
 [![license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](https://github.com/farskid/a11y/blob/master/LICENSE)
