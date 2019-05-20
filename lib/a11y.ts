@@ -61,10 +61,8 @@ async function runA11y(url: string, options: A11yOptions) {
     }
 
     logger(report);
-    process.exitCode = 0;
   } catch (err) {
     errorLogger(err);
-    process.exitCode = 1;
   } finally {
     successLogger(`Done!`);
     progressSpinner.stop();
@@ -76,15 +74,17 @@ function main() {
   const { url, standard, out } = args;
   // Invalid url
   if (typeof url !== "string" || url === "") {
-    return errorLogger("a11y can't find a url");
+    errorLogger("a11y can't find a url");
+    process.exit(1);
   }
   // Unsupported standard
   if (standard !== undefined && !supportedStandards.includes(standard)) {
-    return errorLogger(
+    errorLogger(
       `Standard ${standard} is not supported. Only ${supportedStandards.join(
         "/"
       )} are supported for now.`
     );
+    process.exit(1);
   }
 
   const defaultOptions: Partial<A11yOptions> = {
