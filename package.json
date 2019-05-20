@@ -1,7 +1,7 @@
 {
   "name": "@farskid/a11y",
   "description": "Automated Accessibility tests",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "author": {
     "name": "Farzad YZ",
     "email": "farskid@gmail.com",
