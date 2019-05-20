@@ -19,9 +19,11 @@
   "devDependencies": {
     "@types/chalk": "2.2.0",
     "@types/fs-extra": "7.0.0",
+    "@types/lodash.merge": "4.6.6",
     "@types/minimist": "1.2.0",
     "@types/puppeteer": "1.12.4",
-    "microbundle": "0.11.0",
+    "lodash.merge": "4.6.1",
+    "tslib": "1.9.3",
     "tslint-config-prettier": "1.18.0"
   },
   "bin": "bin/a11y",
@@ -31,8 +33,10 @@
   "scripts": {
     "build": "rm -rf dist && tsc",
     "start": "tsc --watch",
-    "test:cli:no-url": "yarn build && node dist/a11y.js",
     "test:cli": "rm -rf ./reports && yarn build && node dist/a11y.js --url https://farzadyz.com --out ./reports --standard Section508",
+    "test:cli:no-url": "yarn build && node dist/a11y.js",
+    "test:cli:invalid-standard": "yarn build && node dist/a11y.js --url https://farzadyz.com --standard blahblahblah",
+    "test:cli:fail-on-error": "yarn build && node dist/a11y.js --url https://google.com --fail-on-error",
     "prepublish": "npm run build"
   },
   "files": [

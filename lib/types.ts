@@ -18,6 +18,7 @@ export type Runner = (url: string, options: A11yOptions) => Promise<Report>;
 export type A11yArguments = {
   out: string;
   url: string;
+  failOnError: boolean;
 };
 export interface A11yOptions extends SupportedOptions, A11yArguments {}
 

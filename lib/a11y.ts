@@ -7,6 +7,7 @@ import { runWithPa11y } from "./runners/pa11y";
 import { highlightText } from "./colors";
 import ora from "ora";
 import { createReport, storeReport } from "./report";
+import merge from "lodash.merge";
 
 const spinner = (txt: string) => ora(txt);
 
@@ -54,15 +55,21 @@ async function runA11y(url: string, options: A11yOptions) {
       )
     );
 
-    try {
-      await storeProcesses;
-    } catch (err) {
-      throw err;
-    }
+    await storeProcesses;
 
     logger(report);
+
+    if (options.failOnError) {
+      errorLogger(
+        `\nA11y found ${reports
+          .map(r => r.errors.length)
+          .reduce((t, c) => t + c, 0)} errors\n`
+      );
+      process.exit(1);
+    }
   } catch (err) {
     errorLogger(err);
+    throw err;
   } finally {
     successLogger(`Done!`);
     progressSpinner.stop();
@@ -71,7 +78,7 @@ async function runA11y(url: string, options: A11yOptions) {
 
 function main() {
   const args = minimist(process.argv.slice(2));
-  const { url, standard, out } = args;
+  const { url, standard, out, "fail-on-error": failOnError } = args;
   // Invalid url
   if (typeof url !== "string" || url === "") {
     errorLogger("a11y can't find a url");
@@ -89,9 +96,11 @@ function main() {
 
   const defaultOptions: Partial<A11yOptions> = {
     out: path.resolve(process.cwd()),
-    standard: "WCAG2A"
+    standard: "WCAG2A",
+    failOnError: false
   };
-  const options = { ...defaultOptions, url, out, standard };
+
+  const options = merge(defaultOptions, { url, standard, out, failOnError });
 
   runA11y(url, options);
 }
