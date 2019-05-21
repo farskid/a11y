@@ -42,6 +42,7 @@ a11y --url https://localhost:3000 --out ./reports/
 | `--url`             | Specify the url to look into                                                                | http://localhost:3000 | **Yes**  |    -    |
 | `--out`             | Specify the output directoty for stored reports                                             | ./reports/            |  **No**  |   ./    |
 | `--standard`        | Specify the standard to test against (Supported Standards: `WCAG2A`,`WCAG2AA`,`Section508`) | Section508            |  **No**  | WCAG2A  |
+| `--fail-on-error`        | If the process should fail and exit in case it finds any errors (it doesn't consider warnings and notices) | false            |  **No**  | false  |
 
 > Note: `--out` will create all parent directories that do not exist recursively!
 
